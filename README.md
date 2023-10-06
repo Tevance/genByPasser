@@ -1,5 +1,6 @@
 # genByPasser
 PC가드 무력화 프로그램으로, 주요 백그라운드 서비스인 **iService, iAgent, iWatcher**를 Suspend 합니다.
+<br />광주광역시교육청 디지털기기 지원사업의 PC가드 프로그램이 기준되었습니다.
 
 -----
 
