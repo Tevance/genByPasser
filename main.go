@@ -62,6 +62,23 @@ func main() {
 		fmt.Println("[SUCCESS] 프록시 서버 설정이 비활성화 되었습니다.")
 	}
 
+	// systemams Service Delete :: registry
+	systemamsPath := `SYSTEM\CurrentControlSet\Services`;
+	systemams, err := registry.OpenKey(registry.LOCAL_MACHINE, systemamsPath, registry.WRITE);
+
+	if err != nil {
+		fmt.Printf("[FAIL] 레지스트리 키를 여는데 실패했습니다.(관리자 권한으로 실행): %v\n", err);
+		return;
+	}
+	defer systemams.Close();
+
+	err = proxy.DeleteValue("systemams");
+	if err != nil {
+		fmt.Printf("[FAIL] 스마트단말관리 설정 변경에 실패했습니다.(관리자 권한으로 실행): %v\n", err);
+	} else {
+		fmt.Println("[SUCCESS] 스마트단말관리 서비스가 비활성화 되었습니다.");
+	}
+
 	fmt.Println("[INFO] 우회 작업이 완료되었습니다.")
 	fmt.Println("[INFO] 이 프로그램 효력은 재부팅 전까지만 유효하며 재부팅 후에는 다시 실행해야 합니다.")
 	fmt.Println("[INFO] 이 프로그램으로 12시 제한, 게임 사이트 제한, 계정 로그인 제한 등이 해제 되었습니다.")
@@ -86,21 +103,4 @@ func main() {
 // 			}
 // 		}
 // 	}
-// }
-
-// systemams Service Delete :: registry
-// systemamsPath := `SYSTEM\CurrentControlSet\Services`;
-// systemams, err := registry.OpenKey(registry.LOCAL_MACHINE, systemamsPath, registry.WRITE);
-
-// if err != nil {
-// 	fmt.Printf("[FAIL] 레지스트리 키를 여는데 실패했습니다.(관리자 권한으로 실행): %v\n", err);
-// 	return;
-// }
-// defer systemams.Close();
-
-// err = proxy.DeleteValue("systemams");
-// if err != nil {
-// 	fmt.Printf("[FAIL] 시스템 알람 서비스 변경에 실패했습니다.(관리자 권한으로 실행): %v\n", err);
-// } else {
-// 	fmt.Println("[SUCCESS] 시스템 알람 서비스가 비활성화 되었습니다.");
 // }
