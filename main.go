@@ -9,6 +9,7 @@ import (
 	"golang.org/x/sys/windows/registry"
 )
 
+// Code Run
 func main() {
 	fmt.Println("==============================")
 	fmt.Println("genByPasser :: 스마트단말관리, PC가드 무력화")
